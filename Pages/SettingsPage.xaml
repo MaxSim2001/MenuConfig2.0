@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:MenuConfig2._0.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SettingsPage">
-
-    <Grid>
-        
+       Title="SettingsPage">
+    <Grid Background="White">
+        <TextBlock Text="Bienvenue sur la page settings !" FontSize="20" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>

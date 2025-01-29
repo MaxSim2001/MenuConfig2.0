@@ -19,7 +19,7 @@ namespace MenuConfig2._0
         public MainWindow()
         {
             InitializeComponent();
-         
+            MainFrame.Navigated += (sender, e) => MainFrame.NavigationService.RemoveBackEntry();
         }
     }
 }
