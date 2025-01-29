@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MenuConfig2._0
+namespace MenuConfig2._0.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour SettingsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SettingsPage : Page
     {
-        public MainWindow()
+        public SettingsPage()
         {
             InitializeComponent();
-         
         }
     }
 }

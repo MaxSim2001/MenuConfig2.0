@@ -1,16 +1,26 @@
 ﻿<Window x:Class="MenuConfig2._0.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MenuConfig2._0"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Navigation WPF" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="293*"/>
+            <ColumnDefinition Width="200"/>
+            <!-- Navigation latérale -->
+            <ColumnDefinition Width="*"/>
+            <!-- Contenu principal -->
         </Grid.ColumnDefinitions>
 
+        <!-- Menu latéral -->
+        <StackPanel Grid.Column="0" Background="#2C3E50" Width="200">
+            <Button Content="Accueil" Command="{Binding NavigateCommand}" CommandParameter="HomePage" 
+                    Foreground="White" Background="Transparent" Margin="10"/>
+            <Button Content="Paramètres" Command="{Binding NavigateCommand}" CommandParameter="SettingsPage"
+                    Foreground="White" Background="Transparent" Margin="10"/>
+            <Button Content="À Propos" Command="{Binding NavigateCommand}" CommandParameter="AboutPage"
+                    Foreground="White" Background="Transparent" Margin="10"/>
+        </StackPanel>
+
+        <!-- Contenu principal -->
+        <Frame Grid.Column="1" Name="MainFrame"/>
     </Grid>
 </Window>

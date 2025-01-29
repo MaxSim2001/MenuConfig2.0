@@ -12,7 +12,6 @@
   <ItemGroup>
     <Folder Include="Fonctions\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>
