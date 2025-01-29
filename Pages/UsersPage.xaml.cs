@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MenuConfig2._0.Pages
 {
     /// <summary>
-    /// Logique d'interaction pour HomePage.xaml
+    /// Logique d'interaction pour UsersPage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class UsersPage : Page
     {
-        public HomePage()
+        public UsersPage()
         {
             InitializeComponent();
         }

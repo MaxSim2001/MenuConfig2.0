@@ -15,13 +15,35 @@
         </Grid.ColumnDefinitions>
 
         <!-- Menu latéral -->
-        <StackPanel Grid.Column="0" Background="#2C3E50" Width="200">
-            <Button Content="Accueil" Command="{Binding NavigateCommand}" CommandParameter="HomePage" 
-                    Foreground="White" Background="Transparent" Margin="10"/>
-            <Button Content="Paramètres" Command="{Binding NavigateCommand}" CommandParameter="SettingsPage"
-                    Foreground="White" Background="Transparent" Margin="10"/>
-            <Button Content="À Propos" Command="{Binding NavigateCommand}" CommandParameter="AboutPage"
-                    Foreground="White" Background="Transparent" Margin="10"/>
+        <StackPanel Grid.Column="0" Background="#2C3E50" Width="200" Margin="0">
+            <TextBlock Text="Menu de Dépannage" Foreground="White" FontSize="16" FontWeight="Bold" Margin="5" />
+
+            <!-- Diagnostic Rapide -->
+            <Button Content="🔍 Diagnostic rapide" Command="{Binding NavigateCommand}" CommandParameter="DiagnosticPage"
+            Foreground="White" Background="Transparent" Margin="5"/>
+
+            <!-- Outils Système -->
+            <Button Content="⚙️ Outils système" Command="{Binding NavigateCommand}" CommandParameter="OutilsSystemePage"
+            Foreground="White" Background="Transparent" Margin="5"/>
+
+            <!-- Gestion des Utilisateurs -->
+            <Button Content="👤 Gestion utilisateurs" Command="{Binding NavigateCommand}" CommandParameter="UsersPage"
+            Foreground="White" Background="Transparent" Margin="5"/>
+
+            <!-- Nettoyage & Optimisation -->
+            <Button Content="🧹 Nettoyage et optimisation" Command="{Binding NavigateCommand}" CommandParameter="NettoyagePage"
+            Foreground="White" Background="Transparent" Margin="5"/>
+
+            <!-- Paramètres Avancés -->
+            <Button Content="⚡ Paramètres avancés" Command="{Binding NavigateCommand}" CommandParameter="AdvancedSettingsPage"
+            Foreground="White" Background="Transparent" Margin="5"/>
+
+            <!-- À Propos / Aide -->
+            <Button Content="ℹ️ À Propos / Aide" Command="{Binding NavigateCommand}" CommandParameter="AboutPage"
+            Foreground="White" Background="Transparent" Margin="5"/>
+            
+            <Button Content="⚙️ Paramètres" Command="{Binding NavigateCommand}" CommandParameter="SettingsPage"
+            Foreground="White" Background="Transparent" Margin="5"/>
         </StackPanel>
 
         <!-- Contenu principal -->
