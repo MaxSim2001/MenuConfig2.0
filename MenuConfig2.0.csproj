@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="Resources\Styles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Fonctions\" />
     <Folder Include="Images\" />
   </ItemGroup>
@@ -17,6 +21,10 @@
   <ItemGroup>
     <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
     <PackageReference Include="System.Management" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Styles.xaml" />
   </ItemGroup>
 
 </Project>

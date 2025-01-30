@@ -3,10 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MenuConfig2._0.Pages"
+      xmlns:vm="clr-namespace:MenuConfig2._0.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OutilsSystemePage">
+      Title="Outils Système">
 
     <Grid Background="White" Margin="10">
         <Grid.RowDefinitions>
@@ -19,7 +19,7 @@
         <!-- 🔹 Barre de boutons en haut (toujours visible) -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#2C3E50" Margin="10">
             <Button Content="🔄 Réparer Windows" Width="200" Height="35" 
-                    Command="{Binding ReparFichiersSystemeCommand}" Margin="5"
+                    Command="{Binding StartRepairCommand}" Margin="5"
                     Style="{StaticResource ClickableButtonStyle}"/>
             <Button Content="🛠 Services Windows" Width="200" Height="35" 
                     Command="{Binding GererServicesCommand}" Margin="5"
@@ -42,14 +42,22 @@
                         <TextBlock Text="🔄 Réparation Windows (Choisissez un niveau)" FontSize="18" FontWeight="Bold" Foreground="#34495E"/>
 
                         <RadioButton Content="🔹 Niveau 1 : Vérification rapide (sfc /scannow)" 
-                                     GroupName="RepairLevel" IsChecked="True" 
-                                     Command="{Binding SetRepairLevelCommand}" CommandParameter="1"/>
+             GroupName="RepairLevel" 
+             IsChecked="{Binding Path=RepairLevel, Mode=TwoWay, Converter={StaticResource IntToBoolConverter}, ConverterParameter=1}" 
+             Command="{Binding SetRepairLevelCommand}" 
+             CommandParameter="1"/>
+
                         <RadioButton Content="🔸 Niveau 2 : Réparation avancée (DISM + sfc)" 
-                                     GroupName="RepairLevel"
-                                     Command="{Binding SetRepairLevelCommand}" CommandParameter="2"/>
+             GroupName="RepairLevel"
+             IsChecked="{Binding Path=RepairLevel, Mode=TwoWay, Converter={StaticResource IntToBoolConverter}, ConverterParameter=2}" 
+             Command="{Binding SetRepairLevelCommand}" 
+             CommandParameter="2"/>
+
                         <RadioButton Content="🔴 Niveau 3 : Analyse disque (chkdsk)" 
-                                     GroupName="RepairLevel"
-                                     Command="{Binding SetRepairLevelCommand}" CommandParameter="3"/>
+             GroupName="RepairLevel"
+             IsChecked="{Binding Path=RepairLevel, Mode=TwoWay, Converter={StaticResource IntToBoolConverter}, ConverterParameter=3}" 
+             Command="{Binding SetRepairLevelCommand}" 
+             CommandParameter="3"/>
 
                         <!-- Sélection du disque pour chkdsk -->
                         <StackPanel Orientation="Horizontal" Visibility="{Binding IsDiskSelectionVisible}">
@@ -78,3 +86,4 @@
         </ScrollViewer>
     </Grid>
 </Page>
+
