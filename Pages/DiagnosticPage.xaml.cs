@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MenuConfig2._0.ViewModels;
+
 
 namespace MenuConfig2._0.Pages
 {
@@ -20,9 +22,41 @@ namespace MenuConfig2._0.Pages
     /// </summary>
     public partial class DiagnosticPage : Page
     {
+        private DiagnosticViewModel _viewModel;
+
         public DiagnosticPage()
         {
             InitializeComponent();
+
+            // 🔥 Assigne manuellement le ViewModel pour éviter le NULL
+            this.DataContext = new DiagnosticViewModel();
+
+            _viewModel = DataContext as DiagnosticViewModel;
+
+            this.Loaded += DiagnosticPage_Loaded;
+            this.Unloaded += DiagnosticPage_Unloaded;
+        }
+
+        private void DiagnosticPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel != null)
+            {
+                _viewModel.IsActive = true;
+                Console.WriteLine("✅ Onglet Diagnostic chargé : IsActive = true");
+            }
+            else
+            {
+                Console.WriteLine("❌ DataContext toujours NULL après initialisation !");
+            }
+        }
+
+        private void DiagnosticPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel != null)
+            {
+                _viewModel.IsActive = false;
+                Console.WriteLine("⛔ Onglet Diagnostic quitté : IsActive = false");
+            }
         }
     }
 }

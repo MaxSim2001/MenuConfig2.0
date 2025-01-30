@@ -16,10 +16,13 @@ namespace MenuConfig2._0
     /// </summary>
     public partial class MainWindow : Window
     {
+        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        private static extern bool AllocConsole();
         public MainWindow()
         {
             InitializeComponent();
             MainFrame.Navigated += (sender, e) => MainFrame.NavigationService.RemoveBackEntry();
+            AllocConsole();
         }
     }
 }

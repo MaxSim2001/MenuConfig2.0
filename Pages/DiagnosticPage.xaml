@@ -6,10 +6,72 @@
       xmlns:local="clr-namespace:MenuConfig2._0.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DiagnosticPage">
+      Title="Diagnostic Rapide">
 
-    <Grid Background="White">
-        <TextBlock Text="Bienvenue sur la page DiagnosticPage !" FontSize="20" 
-               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid Background="White" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Ligne pour les boutons (fixe) -->
+            <RowDefinition Height="*"/>
+            <!-- Ligne pour le contenu (défilable) -->
+        </Grid.RowDefinitions>
+
+        <!-- Barre de boutons en haut -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#2C3E50" Margin="10" Cursor="">
+            <Button Content="🔄 Rafraîchir Matériel" Width="160" Height="35" Command="{Binding RefreshHardwareCommand}" Margin="5"/>
+            <Button Content="📡 Tester Réseau" Width="160" Height="35" Command="{Binding TestNetworkCommand}" Margin="5"/>
+            <Button Content="📜 Rafraîchir Logs" Width="150" Height="30" Command="{Binding LoadLogsCommand}" Margin="5"/>
+            <Button Content="📂 Ouvrir Logs Windows" Width="200" Height="30" Command="{Binding OpenEventViewerCommand}" Margin="5"/>
+            <Button Content="📊 Analyser Disques" Width="160" Height="35" Command="{Binding RefreshHardwareCommand}" Margin="5"/>
+        </StackPanel>
+
+        <!-- Contenu principal défilable -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10">
+                <!-- Section Test Matériel -->
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="5" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="📊 Test Matériel" FontSize="18" FontWeight="Bold" Foreground="#34495E"/>
+                        <TextBlock Text="{Binding CpuUsage}" FontSize="14" Foreground="Gray"/>
+                        <ProgressBar Value="{Binding CpuUsagePercentage}" Maximum="100" Height="12" Margin="5"/>
+                        <TextBlock Text="{Binding RamUsage}" FontSize="14" Foreground="Gray"/>
+                        <ProgressBar Value="{Binding RamUsagePercentage}" Maximum="100" Height="12" Margin="5"/>
+                        <TextBlock Text="{Binding GpuUsage}" FontSize="14" Foreground="Gray"/>
+                        <ProgressBar Value="{Binding GpuUsagePercentage}" Maximum="100" Height="12" Margin="5"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Section Test Réseau -->
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="5" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="🌐 Test Réseau" FontSize="18" FontWeight="Bold" Foreground="#34495E"/>
+                        <TextBlock Text="{Binding ConnectionStatus}" FontSize="14" Foreground="Gray"/>
+                        <TextBlock Text="{Binding LocalIp}" FontSize="14" Foreground="Gray"/>
+                        <TextBlock Text="{Binding PublicIp}" FontSize="14" Foreground="Gray"/>
+                        <TextBlock Text="{Binding PingResult}" FontSize="14" Foreground="Gray"/>
+                        <TextBlock Text="{Binding DownloadSpeed}" FontSize="14" Foreground="Gray"/>
+                        <TextBlock Text="{Binding UploadSpeed}" FontSize="14" Foreground="Gray"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Section Logs Système -->
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="5" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="📄 Logs Système" FontSize="18" FontWeight="Bold" Foreground="#34495E"/>
+                        <ListBox ItemsSource="{Binding SystemLogs}" Height="120" Margin="5"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Section Espace Disque -->
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="5" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="💾 Espace Disque" FontSize="18" FontWeight="Bold" Foreground="#34495E"/>
+                        <ListBox ItemsSource="{Binding DiskUsage}" Height="120" Margin="5"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
+
+
