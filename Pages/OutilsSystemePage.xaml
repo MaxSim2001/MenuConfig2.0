@@ -8,8 +8,73 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OutilsSystemePage">
 
-    <Grid Background="White">
-        <TextBlock Text="Bienvenue sur la page OutilsSystemePage !" FontSize="20" 
-               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid Background="White" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Barre de boutons toujours visible -->
+            <RowDefinition Height="*"/>
+            <!-- Contenu principal défilable -->
+        </Grid.RowDefinitions>
+
+        <!-- 🔹 Barre de boutons en haut (toujours visible) -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#2C3E50" Margin="10">
+            <Button Content="🔄 Réparer Windows" Width="200" Height="35" 
+                    Command="{Binding ReparFichiersSystemeCommand}" Margin="5"
+                    Style="{StaticResource ClickableButtonStyle}"/>
+            <Button Content="🛠 Services Windows" Width="200" Height="35" 
+                    Command="{Binding GererServicesCommand}" Margin="5"
+                    Style="{StaticResource ClickableButtonStyle}"/>
+            <Button Content="🔍 Vérifier Windows Update" Width="200" Height="35" 
+                    Command="{Binding VerifierWindowsUpdateCommand}" Margin="5"
+                    Style="{StaticResource ClickableButtonStyle}"/>
+            <Button Content="📂 Explorateur Windows" Width="200" Height="35" 
+                    Command="{Binding OuvrirExplorateurCommand}" Margin="5"
+                    Style="{StaticResource ClickableButtonStyle}"/>
+        </StackPanel>
+
+        <!-- 🔹 Contenu principal défilable -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10">
+
+                <!-- 🔄 Réparation de Windows avec niveaux -->
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="5" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="🔄 Réparation Windows (Choisissez un niveau)" FontSize="18" FontWeight="Bold" Foreground="#34495E"/>
+
+                        <RadioButton Content="🔹 Niveau 1 : Vérification rapide (sfc /scannow)" 
+                                     GroupName="RepairLevel" IsChecked="True" 
+                                     Command="{Binding SetRepairLevelCommand}" CommandParameter="1"/>
+                        <RadioButton Content="🔸 Niveau 2 : Réparation avancée (DISM + sfc)" 
+                                     GroupName="RepairLevel"
+                                     Command="{Binding SetRepairLevelCommand}" CommandParameter="2"/>
+                        <RadioButton Content="🔴 Niveau 3 : Analyse disque (chkdsk)" 
+                                     GroupName="RepairLevel"
+                                     Command="{Binding SetRepairLevelCommand}" CommandParameter="3"/>
+
+                        <!-- Sélection du disque pour chkdsk -->
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsDiskSelectionVisible}">
+                            <TextBlock Text="📀 Sélectionnez un disque :" FontSize="14" Foreground="Gray" Margin="5"/>
+                            <ComboBox ItemsSource="{Binding AvailableDisks}" SelectedItem="{Binding SelectedDisk}" Width="100"/>
+                        </StackPanel>
+
+                        <Button Content="🚀 Lancer la réparation" Width="250" Height="40" 
+                                Command="{Binding StartRepairCommand}" Margin="10"
+                                Style="{StaticResource ClickableButtonStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 🔍 Windows Update -->
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="5" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="🔍 Windows Update" FontSize="18" FontWeight="Bold" Foreground="#34495E"/>
+                        <TextBlock Text="Statut des mises à jour et historique récent." FontSize="14" Foreground="Gray"/>
+                        <ListBox ItemsSource="{Binding WindowsUpdateLogs}" Height="150" Margin="5"/>
+                        <Button Content="Forcer la recherche de mises à jour" Width="300" Height="30" 
+                                Command="{Binding VerifierWindowsUpdateCommand}" Margin="5"
+                                Style="{StaticResource ClickableButtonStyle}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
